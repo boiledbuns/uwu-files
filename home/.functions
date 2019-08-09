@@ -1,0 +1,10 @@
+# easy way to manage file the file manager
+function fm() {
+    if [ -z "$1" ];
+        # open nautilus in current dir if no args
+        then nautilus . & disown nautilus
+    else
+        # open nautilus in dir specified
+        nautilus $1 & disown nautilus
+    fi
+}
