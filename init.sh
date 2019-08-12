@@ -5,12 +5,12 @@
 installSymLinks() {
     local homeFiles=($(ls -A "home"))
     for file in "${homeFiles[@]}"; do
-        ln -svf "home/$file" "$HOME"
+        ln -svf "$PWD/home/$file" "$HOME"
     done
 
     local configFiles=($(ls -A ".config"))
     for file in "${configFiles[@]}"; do
-        ln -svf ".config/$file" "$HOME/.config/"
+        ln -svf "$PWD/.config/$file" "$HOME/.config/"
     done
 }
 
