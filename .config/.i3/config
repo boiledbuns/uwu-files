@@ -58,10 +58,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
+bindsym $mod+Shift+m move left
+bindsym $mod+Shift+k move right
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+semicolon move down
 
 # alternatively, you can use the cursor keys:
 # bindsym $mod+Shift+Left move left
@@ -179,21 +179,22 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 # workspace 1 output DP-2
 # workspace 2 output eDP-1
 
+# swap control and alt keys
 exec_always "setxkbmap -option ctrl:swap_lalt_lctl"
 
+# wallpapers
 exec_always --no-startup-id compton -CG --unredir-if-possible --config /dev/null
 # exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/rockydolomite.jpg
 exec_always --no-startup-id feh --random --bg-fill ~/Pictures/Wallpapers/*
 
 # startup apps
-exec terminal
+exec gnome-terminal
 exec google-chrome
 
 #
 bindsym $mod+Shift+Left workspace prev
 bindsym $mod+Shift+Right workspace next
 
-default_border none
 hide_edge_borders smart
 
 # just prefer this for organization of workspaces
