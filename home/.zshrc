@@ -112,3 +112,6 @@ fi
 if [ -f ~/.functions ]; then
     . ~/.functions
 fi
+
+PATH="$HOME/android-studio/bin:$PATH"
+export PATH

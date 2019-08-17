@@ -3,3 +3,5 @@ alias gpom="git push origin master"
 
 # always put git repos in this folder
 alias cdrepo="cd ~/Desktop/REPO" 
+
+alias uwu="code ~/Desktop/REPO/uwu-files"
