@@ -132,4 +132,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 PATH="$HOME/android-studio/bin:$PATH"
+PATH="$HOME/.local/kitty.app/bin/kitty:$PATH"
 export PATH="/home/richard/.npm-global/bin:$PATH"

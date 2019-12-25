@@ -1,9 +1,13 @@
-alias gpull="git pull"
+alias gpu="git pull"
 alias gco="git checkout"
+alias ga="git add"
 alias gst="git status"
-alias gpom="git push origin master"
+alias gp="git push"
+alias gc="git commit -m"
 
 # always put git repos in this folder
-alias cdrepo="cd ~/Desktop/REPO" 
+alias repo="cd ~/Desktop/REPO" 
 
 alias uwu="code ~/Desktop/REPO/uwu-files"
+
+alias relic="cd ~/Desktop/REPO/Relic"
