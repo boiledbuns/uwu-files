@@ -113,5 +113,11 @@ if [ -f ~/.functions ]; then
     . ~/.functions
 fi
 
+PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 PATH="$HOME/android-studio/bin:$PATH"
+PATH="$HOME/dev/flutter/bin:$PATH"
 export PATH
+
+
+ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+export ANDROID_SDK_ROOT

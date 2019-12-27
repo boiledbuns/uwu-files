@@ -112,7 +112,7 @@ if [ -f ~/.bash_project_aliases ]; then
 fi
 
 # functions
-if [ -f ~/.functions]; then
+if [ -f ~/.functions ]; then
     . ~/.functions
 fi
 
