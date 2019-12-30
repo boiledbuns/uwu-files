@@ -113,6 +113,7 @@ if [ -f ~/.functions ]; then
     . ~/.functions
 fi
 
+PATH="$HOME/.npm-global/bin:$PATH"
 PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 PATH="$HOME/android-studio/bin:$PATH"
 PATH="$HOME/dev/flutter/bin:$PATH"
