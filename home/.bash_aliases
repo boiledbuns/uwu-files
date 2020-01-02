@@ -8,6 +8,6 @@ alias gc="git commit -m"
 # always put git repos in this folder
 alias repo="cd ~/Desktop/REPO" 
 
-alias uwu="code ~/Desktop/REPO/uwu-files"
+alias uwu="cd ~/Desktop/REPO/uwu-files"
 
 alias relic="cd ~/Desktop/REPO/Relic"

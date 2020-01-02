@@ -27,7 +27,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -113,12 +113,17 @@ if [ -f ~/.functions ]; then
     . ~/.functions
 fi
 
+
+ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+export ANDROID_SDK_ROOT
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 PATH="$HOME/.npm-global/bin:$PATH"
 PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 PATH="$HOME/android-studio/bin:$PATH"
 PATH="$HOME/dev/flutter/bin:$PATH"
+PATH="$HOME/.local/kitty.app/bin/kitty:$PATH"
+
 export PATH
-
-
-ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-export ANDROID_SDK_ROOT

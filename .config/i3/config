@@ -33,9 +33,6 @@ font pango:monospace 11
 # Use Mouse+$mod_deprecated to drag floating windows to their wanted position
 floating_modifier $mod_deprecated
 
-# start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -202,9 +199,9 @@ set $APPS_BROWSER "chrome|Firefox"
 set $APPS_CODE "Code|studio"
 
 # just prefer this for organization of workspaces
-assign [class=$APPS_TERMINAL]           number "1: terminal"
-assign [class=$APPS_BROWSER]            number "2: web"
-assign [class=$APPS_CODE]               number "3: code"
+assign [class=$APPS_TERMINAL]           "1: terminal"
+assign [class=$APPS_BROWSER]            "2: web"
+assign [class=$APPS_CODE]               "3: code"
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
