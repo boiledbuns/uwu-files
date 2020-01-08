@@ -36,6 +36,9 @@ floating_modifier $mod_deprecated
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# removes titlebar from windows
+new_window 1pixel
+
 # start dmenu (a program launcher)
 # bindsym $mod_deprecated+d exec dmenu_run
 # bindsym $mod_deprecated+Return exec rofi -show run -lines 20 -eh 1.3 -opacity "85" -bw 0 -font "System San Francisco Display 10"
@@ -187,7 +190,7 @@ exec_always --no-startup-id feh --random --bg-fill ~/Pictures/Wallpapers/*
 
 # startup apps
 exec kitty
-exec google-chrome
+exec Firefox
 
 bindsym $mod_deprecated+Shift+Left workspace prev
 bindsym $mod_deprecated+Shift+Right workspace next
