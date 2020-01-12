@@ -190,18 +190,17 @@ exec_always --no-startup-id feh --random --bg-fill ~/Pictures/Wallpapers/*
 
 # startup apps
 exec kitty
-exec Firefox
+exec firefox
 
 bindsym $mod_deprecated+Shift+Left workspace prev
 bindsym $mod_deprecated+Shift+Right workspace next
 
 hide_edge_borders smart
 
+# assigns apps to named workspaces
 set $APPS_TERMINAL "kitty|terminal"
-set $APPS_BROWSER "chrome|Firefox"
-set $APPS_CODE "Code|studio"
-
-# just prefer this for organization of workspaces
+set $APPS_BROWSER "Chrome|Firefox"
+set $APPS_CODE "Code|Studio"
 assign [class=$APPS_TERMINAL]           "1: terminal"
 assign [class=$APPS_BROWSER]            "2: web"
 assign [class=$APPS_CODE]               "3: code"
