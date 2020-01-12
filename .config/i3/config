@@ -199,7 +199,7 @@ hide_edge_borders smart
 
 # assigns apps to named workspaces
 set $APPS_TERMINAL "kitty|terminal"
-set $APPS_BROWSER "Chrome|Firefox"
+set $APPS_BROWSER "chrome|Firefox"
 set $APPS_CODE "Code|Studio"
 assign [class=$APPS_TERMINAL]           "1: terminal"
 assign [class=$APPS_BROWSER]            "2: web"
