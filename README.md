@@ -18,6 +18,9 @@ instructions and inspo from [here](https://www.freecodecamp.org/news/dive-into-d
 - [arandr](https://christian.amsuess.com/tools/arandr/): xrandr gui for managing displays more easily
 - [autorandr](https://github.com/wertarbyte/autorandr): for auto detecting monitors and applying a config bc I usually use an external monitor
 - [ulauncher](https://ulauncher.io/): app launcher though I might swap it out for another one soon
+- redshift: flux for linux
+- [light](https://github.com/haikarainen/light): controlling brightness
+*note about light, make sure to install 1.1.2 or below or else it'll require superuser permissions
 
 # Solutions to common problems
 - No polkit auth agent: install [policykit-1-gnome](https://launchpad.net/ubuntu/+source/policykit-1-gnome) 
