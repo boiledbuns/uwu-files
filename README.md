@@ -17,6 +17,7 @@ instructions and inspo from [here](https://www.freecodecamp.org/news/dive-into-d
 - visual studio code
 - [arandr](https://christian.amsuess.com/tools/arandr/): xrandr gui for managing displays more easily
 - [autorandr](https://github.com/wertarbyte/autorandr): for auto detecting monitors and applying a config bc I usually use an external monitor
+- [srandrd](https://github.com/jceb/srandrd): randr daemon to detect monitor changes and auto reload autorandr
 - [ulauncher](https://ulauncher.io/): app launcher though I might swap it out for another one soon
 - redshift: flux for linux
 - [light](https://github.com/haikarainen/light): controlling brightness

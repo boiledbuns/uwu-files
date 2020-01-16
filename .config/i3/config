@@ -173,9 +173,10 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 # swap control and alt keys
 exec_always "setxkbmap -option ctrl:swap_lalt_lctl"
 
-# setting up compton and pol agent
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec_always --no-startup-id compton --config ~/.config/compton.conf -b
+# setting up compton , pol agent, srandr
+exec            --no-startup-id         /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec_always     --no-startup-id         compton --config ~/.config/compton.conf -b
+exec            --no-startup-id         srandrd ~/scripts/reload_autorandr 
 
 # wallpapers
 # exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/rockydolomite.jpg
