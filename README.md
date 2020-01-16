@@ -27,6 +27,7 @@ instructions and inspo from [here](https://www.freecodecamp.org/news/dive-into-d
 - No polkit auth agent: install [policykit-1-gnome](https://launchpad.net/ubuntu/+source/policykit-1-gnome) 
 - Scrolling stops working after refresh : follow these [instructions](https://askubuntu.com/questions/1053720/scrolling-not-working-after-suspend-looking-for-permanent-solution)
 - Set FF as default browser: `sudo xdg-settings set default-web-browser opera.desktop`
+- To use `memory` module for i3status, need to update to v2.12+
 
 # TODO
 create scripts to install programs that I always use 
