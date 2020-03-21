@@ -93,9 +93,9 @@ bindsym $mod_deprecated+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $WS_TERMINAL number 1 terminal
-set $WS_WEB number 2 web
-set $WS_CODE number 3 code
+set $WS_TERMINAL number 1: terminal
+set $WS_WEB number 2: web
+set $WS_CODE number 3: code
 
 # switch to workspace
 bindsym $mod+1 workspace $WS_TERMINAL
@@ -173,17 +173,18 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 # swap control and alt keys
 exec_always "setxkbmap -option ctrl:swap_lalt_lctl"
 
-# setting up compton , pol agent, srandr
+# setting up compton, pol agent, srandrd, redshift
 exec            --no-startup-id         /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec_always     --no-startup-id         compton --config ~/.config/compton.conf -b
-exec            --no-startup-id         srandrd ~/scripts/reload_autorandr 
+# exec            --no-startup-id         srandrd ~/scripts/reload_autorandr 
+exec            --no-startup-id         redshift 
 
 # wallpapers
 # exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/rockydolomite.jpg
 exec_always --no-startup-id feh --random --bg-fill ~/Pictures/Wallpapers/*
 
 # startup apps
-exec kitty
+exec gnome-terminal
 exec firefox
 
 bindsym $mod_deprecated+Shift+Left workspace prev
@@ -203,7 +204,7 @@ assign [class=$APPS_CODE]               "3: code"
 # (effectively toggles when you only have two outputs)
 bindsym $mod_deprecated+x move workspace to output right
 
-# solarixed colors from https://ethanschoonover.com/solarized/
+# solarized colors from https://ethanschoonover.com/solarized/
 set $base03     #002b36
 set $base02     #073642
 set $base01     #586e75

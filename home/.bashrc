@@ -134,3 +134,4 @@ export NVM_DIR="$HOME/.nvm"
 PATH="$HOME/android-studio/bin:$PATH"
 PATH="$HOME/.local/kitty.app/bin/kitty:$PATH"
 export PATH="/home/richard/.npm-global/bin:$PATH"
+source /home/markw/Desktop/vcpkg/scripts/vcpkg_completion.bash
