@@ -68,7 +68,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git git-open)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,15 +118,15 @@ ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export ANDROID_SDK_ROOT
 
 export PSQL_DIR="/usr/local/pgsql/bin"
-export PATH="$PSQL_DIR:$PATH"
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
+export PATH="$PSQL_DIR:$PATH"
+export RUST_BACKTRACE=1
 
 PATH="$HOME/.npm-global/bin:$PATH"
 PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 PATH="$HOME/android-studio/bin:$PATH"
+PATH="$HOME/dev/ngrok:$PATH"
 PATH="$HOME/dev/flutter/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.local/kitty.app/bin/kitty:$PATH"

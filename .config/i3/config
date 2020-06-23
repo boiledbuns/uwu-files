@@ -42,7 +42,8 @@ new_window 1pixel
 # start dmenu (a program launcher)
 # bindsym $mod_deprecated+d exec dmenu_run
 # bindsym $mod_deprecated+Return exec rofi -show run -lines 20 -eh 1.3 -opacity "85" -bw 0 -font "System San Francisco Display 10"
-bindsym $mod+Return exec ulauncher
+# bindsym $mod+Return exec ulauncher
+# bindsym $mod+Return exec guake
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -50,10 +51,10 @@ bindsym $mod+Return exec ulauncher
 # bindsym $mod_deprecated+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod_deprecated+j focus left
+bindsym $mod_deprecated+k focus down
+bindsym $mod_deprecated+l focus up
+bindsym $mod_deprecated+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -62,10 +63,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+m move left
-bindsym $mod+Shift+k move right
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move down
+bindsym $mod_deprecated+Shift+m move left
+bindsym $mod_deprecated+Shift+k move right
+bindsym $mod_deprecated+Shift+l move up
+bindsym $mod_deprecated+Shift+semicolon move down
 
 # split in horizontal orientation
 bindsym $mod_deprecated+h split h
@@ -92,34 +93,6 @@ bindsym $mod_deprecated+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-
-set $WS_TERMINAL number 1: terminal
-set $WS_WEB number 2: web
-set $WS_CODE number 3: code
-
-# switch to workspace
-bindsym $mod+1 workspace $WS_TERMINAL
-bindsym $mod+2 workspace $WS_WEB
-bindsym $mod+3 workspace $WS_CODE
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $WS_TERMINAL
-bindsym $mod+Shift+2 move container to workspace $WS_WEB
-bindsym $mod+Shift+3 move container to workspace $WS_CODE
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod_deprecated+Shift+c reload
@@ -154,6 +127,37 @@ mode "resize" {
 
 bindsym $mod_deprecated+r mode "resize"
 
+# workspace names
+set $WS_TERMINAL number 1: terminal
+set $WS_WEB number 2: web
+set $WS_CODE number 3: code
+
+# switch to workspace
+bindsym $mod+1 workspace $WS_TERMINAL
+bindsym $mod+2 workspace $WS_WEB
+bindsym $mod+3 workspace $WS_CODE
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $WS_TERMINAL
+bindsym $mod+Shift+2 move container to workspace $WS_WEB
+bindsym $mod+Shift+3 move container to workspace $WS_CODE
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+exec i3-msg workspace $WS_WEB
+
 # allow both options
 bindsym $mod+Tab workspace back_and_forth
 
@@ -161,10 +165,10 @@ bindsym $mod+Tab workspace back_and_forth
 bindsym Print exec shutter --select # default is select region
 bindsym Shift+Print exec shutter --full # use shift for entire screen
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# Pulse Audio controls, increase, decrease, mute
+bindsym XF86AudioRaiseVolume exec "pactl -- set-sink-volume 0 +5%; pactl -- set-sink-volume 1 +5%"
+bindsym XF86AudioLowerVolume exec "pactl -- set-sink-volume 0 -5%; pactl -- set-sink-volume 1 -5%"
+bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle; pactl set-sink-mute 1 toggle"
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
@@ -173,19 +177,15 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 # swap control and alt keys
 exec_always "setxkbmap -option ctrl:swap_lalt_lctl"
 
-# setting up compton, pol agent, srandrd, redshift
+# setting up compton, pol agent, srandrd
 exec            --no-startup-id         /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec_always     --no-startup-id         compton --config ~/.config/compton.conf -b
 # exec            --no-startup-id         srandrd ~/scripts/reload_autorandr 
-exec            --no-startup-id         redshift 
 
 # wallpapers
 # exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/rockydolomite.jpg
 exec_always --no-startup-id feh --random --bg-fill ~/Pictures/Wallpapers/*
-
-# startup apps
-exec gnome-terminal
-exec firefox
+exec_always     "autorandr -c"
 
 bindsym $mod_deprecated+Shift+Left workspace prev
 bindsym $mod_deprecated+Shift+Right workspace next
@@ -196,9 +196,16 @@ hide_edge_borders smart
 set $APPS_TERMINAL "kitty|terminal"
 set $APPS_BROWSER "chrome|Firefox"
 set $APPS_CODE "Code|Studio"
+
 assign [class=$APPS_TERMINAL]           "1: terminal"
 assign [class=$APPS_BROWSER]            "2: web"
 assign [class=$APPS_CODE]               "3: code"
+
+# startup apps
+exec gnome-terminal
+exec            --no-startup-id         redshift 
+exec_always --no-startup-id i3-msg 'workspace 2: web; exec ulauncher' 
+exec firefox
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
@@ -227,7 +234,7 @@ set $green      #859900
 bar {
         status_command i3status
        
-        position top
+        position bottom
         tray_output primary
 
         colors {
