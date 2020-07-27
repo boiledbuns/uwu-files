@@ -21,6 +21,7 @@ instructions and inspo from [here](https://www.freecodecamp.org/news/dive-into-d
 - [ulauncher](https://ulauncher.io/): app launcher though I might swap it out for another one soon
 - redshift: flux for linux
 - [light](https://github.com/haikarainen/light): controlling brightness
+- xautolock: for monitoring x window and auto locking
 *note about light, make sure to install 1.1.2 or below or else it'll require superuser permissions
 
 # Tips & Tricks

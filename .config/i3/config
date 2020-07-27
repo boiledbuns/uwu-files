@@ -50,12 +50,6 @@ new_window 1pixel
 # installed.
 # bindsym $mod_deprecated+d exec --no-startup-id i3-dmenu-desktop
 
-# change focus
-bindsym $mod_deprecated+j focus left
-bindsym $mod_deprecated+k focus down
-bindsym $mod_deprecated+l focus up
-bindsym $mod_deprecated+semicolon focus right
-
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -63,10 +57,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod_deprecated+Shift+m move left
-bindsym $mod_deprecated+Shift+k move right
-bindsym $mod_deprecated+Shift+l move up
-bindsym $mod_deprecated+Shift+semicolon move down
+bindsym $mod_deprecated+Shift+j move left
+bindsym $mod_deprecated+Shift+l move right
+bindsym $mod_deprecated+Shift+i move up
+bindsym $mod_deprecated+Shift+k move down
 
 # split in horizontal orientation
 bindsym $mod_deprecated+h split h
@@ -177,18 +171,23 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 # swap control and alt keys
 exec_always "setxkbmap -option ctrl:swap_lalt_lctl"
 
-# setting up compton, pol agent, srandrd
+set $LOCK_COMMAND "i3lock -d -i ~/Pictures/wallpapers/pepper.png"
+
+# setting up compton, i3lock, pol agent, srandrd
 exec            --no-startup-id         /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec            --no-startup-id         xautolock -time 10 -locker '$LOCK_COMMAND'
 exec_always     --no-startup-id         compton --config ~/.config/compton.conf -b
 # exec            --no-startup-id         srandrd ~/scripts/reload_autorandr 
 
 # wallpapers
-# exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/rockydolomite.jpg
-exec_always --no-startup-id feh --random --bg-fill ~/Pictures/Wallpapers/*
+# exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/rockydolomite.jpg
+exec_always --no-startup-id feh --random --bg-fill ~/Pictures/wallpapers/*
 exec_always     "autorandr -c"
 
 bindsym $mod_deprecated+Shift+Left workspace prev
 bindsym $mod_deprecated+Shift+Right workspace next
+
+bindsym $mod_deprecated+l exec $LOCK_COMMAND
 
 hide_edge_borders smart
 
@@ -204,7 +203,7 @@ assign [class=$APPS_CODE]               "3: code"
 # startup apps
 exec gnome-terminal
 exec            --no-startup-id         redshift 
-exec_always --no-startup-id i3-msg 'workspace 2: web; exec ulauncher' 
+exec --no-startup-id i3-msg 'workspace 2: web; exec ulauncher' 
 exec firefox
 
 # Move the current workspace to the next output
@@ -238,14 +237,15 @@ bar {
         tray_output primary
 
         colors {
+                # colorclass            <border>        <background>    <text>
                 background      $base02
                 statusline      $yellow
                 
-                focused_workspace  $base02      $base02         $blue
-                active_workspace   $base02      $base02         $orange
-                inactive_workspace $base02      $base03         $cyan
-                urgent_workspace   $base02      $red            $red
-                binding_mode       $base02      $red            $red
+                focused_workspace       $base02         $base02         $blue
+                active_workspace        $base02         $base02         $orange
+                inactive_workspace      $base02         $base03         $cyan
+                urgent_workspace        $base02         $base03         $red
+                binding_mode            $base02         $red            $red
         }
         
         # disable scrolling on workspace buttons
