@@ -133,3 +133,9 @@ PATH="$HOME/.local/kitty.app/bin/kitty:$PATH"
 PATH="/usr/lib/postgresql/11/bin/:$PATH"
 
 export PATH
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/markw/.sdkman"
+[[ -s "/home/markw/.sdkman/bin/sdkman-init.sh" ]] && source "/home/markw/.sdkman/bin/sdkman-init.sh"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

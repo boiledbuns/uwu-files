@@ -191,14 +191,19 @@ bindsym $mod_deprecated+l exec $LOCK_COMMAND
 
 hide_edge_borders smart
 
+# setup layouts
+exec --no-startup-id "i3-msg '1: terminal; append_layout $HOME/Desktop/REPO/uwu-files/i3-layouts/1.json'"
+
 # assigns apps to named workspaces
-set $APPS_TERMINAL "kitty|terminal"
+set $APPS_TERMINAL "kitty|terminal|Spotify"
 set $APPS_BROWSER "chrome|Firefox"
 set $APPS_CODE "Code|Studio"
+set $MISC "Shutter"
 
 assign [class=$APPS_TERMINAL]           "1: terminal"
 assign [class=$APPS_BROWSER]            "2: web"
 assign [class=$APPS_CODE]               "3: code"
+assign [class=$MISC]                    "5"
 
 # startup apps
 exec gnome-terminal
@@ -252,3 +257,11 @@ bar {
         bindsym button4 nop
         bindsym button5 nop
 }
+
+# catches popups and displays them as floating
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
