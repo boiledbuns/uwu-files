@@ -103,6 +103,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# aliases I use all the time
+if [ -f ~/.bash_aliases_linux ]; then
+    . ~/.bash_aliases_linux
+fi
+
 # aliases I use often between projects (often, but not enough to put them in the repo)
 if [ -f ~/.bash_project_aliases ]; then
     . ~/.bash_project_aliases
@@ -112,7 +117,6 @@ fi
 if [ -f ~/.functions ]; then
     . ~/.functions
 fi
-
 
 ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export ANDROID_SDK_ROOT
