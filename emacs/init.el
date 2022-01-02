@@ -22,34 +22,50 @@
 ;; https://www.emacswiki.org/emacs/EmacsClient
 ;; required for using emacsclient
 ;; ex. opening file in emacs from emacs (ansi-terminal)
-;; (server-start)
+(server-start)
 
 ;; why use use-package macro?
 ;; https://dev.to/jkreeftmeijer/emacs-package-management-with-straight-el-and-use-package-3oc8
-;; basically allows you to combine specify dependency and configure it in single step
-
+;; basically allows you to specify dependency and configure it in single step
 (straight-use-package 'use-package)
 ;; use straight by default
 (use-package straight
   :custom (straight-use-package-by-default t))
 
+;; unused for now - emacs has this built in
+(defun _leader(key)
+    (defconst leader-key "<SPC>")
+    (format "%s %s" leader-key key)
+)
 ;; evil mode cheat sheet
 ;; https://github.com/alycklama/evil-mode-cheat-sheet
+;; evil readthedocs: https://evil.readthedocs.io/en/latest/settings.html
+;; list vars and their vals: M-x customize-group RET evil RET
+;; change them before loading the package
 (use-package evil
+  :init(progn
+	 (setq evil-want-C-u-scroll t) 
+	 (setq evil-want-C-d-scroll t) 
+	 (setq evil-search-module evil-search)
+  :ensure
   :config(progn
 	   (evil-mode 1)
 	   ;; (define-key evil-motion-state-map "\\" 'evil-ex)
 	   ;;(define-key evil-motion-state-map (kbd "SPC") 'evil-ex)
-
-	   ;;(define-key) 
-	   (define-key evil-motion-state-map (kbd ";") 'evil-ex)
+	   (evil-define-key 'motion (kbd ";") 'evil-ex)
 	   (global-set-key (kbd "C-c <left>") 'evil-window-prev)
 	   (global-set-key (kbd "C-c <right>") 'evil-window-next)
 	   (global-set-key (kbd "<esc>") 'keyboard-quit)
-	   (global-set-key (kbd "C-r") 'redo)
-	   ;;(global-set-key (kbd "SPC") )
-	   ;;(global-set-key (kbd "\/") 'swiper)
-	    )
+	   
+	   ;;(define-key evil-motion-state-map (kbd "C-u") 'scroll-down)
+	   ;;(define-key evil-motion-state-map (kbd "C-d") 'scroll-up)
+	   ;;(define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
+	   ;;(define-key evil-motion-state-map (kbd "C-d") 'evil-scroll-down)
+	   ;; LEADER KEY equiv
+	   ;; https://github.com/noctuid/evil-guide#leader-key
+	   (evil-set-leader 'normal (kbd "<SPC>"))
+	   (evil-define-key 'normal 'global (kbd "<leader>p") 'projectile-find-file)
+	   )
 )
 
 ;; dependencies
@@ -59,10 +75,12 @@
 ;; completion mechanism
 ;; https://github.com/abo-abo/swiper
 (use-package ivy
-  :config(progn
-	   (ivy-mode 1)
+  :init(progn
 	   (setq ivy-use-virtual-buffers t) ;; adds recent files to ivy buffers 
 	   (setq ivy-count-format "(%d/%d) ") ;; candidate count for ivy results
+	)
+  :config(progn
+	   (ivy-mode 1)
 	)
   )
 
@@ -88,17 +106,23 @@
 
 ;; (use-package vterm)
 
+;;
 (use-package lsp-mode
   :init
   ;; set pefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (XXX-mode . lsp)
+         (rust-mode . lsp)
          ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
+         ;;(lsp-mode . lsp-enable-which-key-integration)
+	 )
   :commands lsp)
 
 (use-package command-log-mode)
+
+
+;; language major modes
+(use-package rust-mode)
 
 ;; https://github.com/manateelazycat/awesome-tab
 ;; (use-package awesome-tab
@@ -113,7 +137,7 @@
 (load-theme 'gruvbox t)
 ;; some additional emacs config
 (setq inhibit-startup-message t)
-(scroll-bar-mode -1)        ; Disable visible scrollbar
+;;(scroll-bar-mode -1)        ; Disable visible scrollbar
 (tool-bar-mode -1)          ; Disable the toolbar (contains action buttons for stuff like save)
 (tooltip-mode -1)           ; Disable tooltips
 (menu-bar-mode -1)          ; Disable the menu bar
@@ -122,10 +146,10 @@
 ;; (tab-bar-mode 1)
 
 ;; disable messages bufer since it's annoying
-(setq-default message-log-max nil)
+;;(setq-default message-log-max nil)
 
 ;; https://www.emacswiki.org/emacs/
-(global-display-line-numbers-mode)
+(setq global-display-line-numbers-mode t)
 (setq display-line-numbers 'relative)
 
 ;; (defalias 'q 'delete-window)
@@ -133,7 +157,7 @@
 (defun zsh ()
   (interactive)
   (ansi-term "/bin/zsh" "term")
-  )
+)
 
 ;; mac keys: https://emacs.stackexchange.com/questions/26616/how-to-use-a-macs-command-key-as-a-control-key
 
