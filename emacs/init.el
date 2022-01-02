@@ -2,6 +2,8 @@
 ;; use 'describe-* class of commands for more info
 ;; C-h v
 ;; C-g to cancel
+;; C-h w command-name to find keybindings for it
+;; C-h k key-sequence to find command for keybinding
 
 ;; as instructed in straight installation docs: https://github.com/raxod502/straight.el
 (defvar bootstrap-version)
@@ -20,7 +22,7 @@
 ;; https://www.emacswiki.org/emacs/EmacsClient
 ;; required for using emacsclient
 ;; ex. opening file in emacs from emacs (ansi-terminal)
-(server-start)
+;; (server-start)
 
 ;; why use use-package macro?
 ;; https://dev.to/jkreeftmeijer/emacs-package-management-with-straight-el-and-use-package-3oc8
@@ -36,17 +38,26 @@
 (use-package evil
   :config(progn
 	   (evil-mode 1)
-	   (define-key evil-motion-state-map "\\" 'evil-ex)
-	   (define-key evil-motion-state-map "SPC" 'evil-ex)
-	    (global-set-key (kbd "C-c <left>") 'evil-window-prev)
-	    (global-set-key (kbd "C-c <right>") 'evil-window-next)
+	   ;; (define-key evil-motion-state-map "\\" 'evil-ex)
+	   ;;(define-key evil-motion-state-map (kbd "SPC") 'evil-ex)
+
+	   ;;(define-key) 
+	   (define-key evil-motion-state-map (kbd ";") 'evil-ex)
+	   (global-set-key (kbd "C-c <left>") 'evil-window-prev)
+	   (global-set-key (kbd "C-c <right>") 'evil-window-next)
+	   (global-set-key (kbd "<esc>") 'keyboard-quit)
+	   (global-set-key (kbd "C-r") 'redo)
+	   ;;(global-set-key (kbd "SPC") )
+	   ;;(global-set-key (kbd "\/") 'swiper)
 	    )
 )
 
 ;; dependencies
-(use-package dracula-theme
-  :config(load-theme 'dracula t))
+(use-package dracula-theme)
+(use-package gruvbox-theme)
 
+;; completion mechanism
+;; https://github.com/abo-abo/swiper
 (use-package ivy
   :config(progn
 	   (ivy-mode 1)
@@ -55,6 +66,18 @@
 	)
   )
 
+;; finder (uses ivy)
+(use-package swiper
+  :config(progn
+	  (global-set-key (kbd "C-s") 'swiper) 
+	  (global-set-key (kbd "\\") 'swiper)
+	  (global-set-key (kbd "s-f") 'swiper)
+	)
+  )
+
+(use-package magit)
+
+;; project management
 ;; https://docs.projectile.mx/projectile/usage.html
 (use-package projectile
   :config(progn
@@ -67,13 +90,15 @@
 
 (use-package lsp-mode
   :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  ;; set pefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (XXX-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
+
+(use-package command-log-mode)
 
 ;; https://github.com/manateelazycat/awesome-tab
 ;; (use-package awesome-tab
@@ -85,6 +110,7 @@
 ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
 
+(load-theme 'gruvbox t)
 ;; some additional emacs config
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -95,8 +121,12 @@
 ;; https://www.reddit.com/r/emacs/comments/ek3ai3/emacs27_tabbar_with_cocoa_builds_not_working/
 ;; (tab-bar-mode 1)
 
+;; disable messages bufer since it's annoying
+(setq-default message-log-max nil)
+
 ;; https://www.emacswiki.org/emacs/
 (global-display-line-numbers-mode)
+(setq display-line-numbers 'relative)
 
 ;; (defalias 'q 'delete-window)
 
@@ -126,7 +156,10 @@
       (if (not (one-window-p))
           (delete-window)))
 
+;; custom keybindings
 (global-set-key (kbd "s-w") 'close-and-kill-this-pane)
+(global-set-key (kbd "M-s-<left>") 'previous-buffer)
+(global-set-key (kbd "M-s-<right>") 'next-buffer)
 
 ;; from: https://www.emacswiki.org/emacs/LineNumbers
 (defcustom display-line-numbers-exempt-modes
