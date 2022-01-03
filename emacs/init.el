@@ -22,7 +22,7 @@
 ;; https://www.emacswiki.org/emacs/EmacsClient
 ;; required for using emacsclient
 ;; ex. opening file in emacs from emacs (ansi-terminal)
-(server-start)
+;; (server-start)
 
 ;; why use use-package macro?
 ;; https://dev.to/jkreeftmeijer/emacs-package-management-with-straight-el-and-use-package-3oc8
@@ -42,30 +42,34 @@
 ;; evil readthedocs: https://evil.readthedocs.io/en/latest/settings.html
 ;; list vars and their vals: M-x customize-group RET evil RET
 ;; change them before loading the package
+(use-package undo-fu)
 (use-package evil
   :init(progn
 	 (setq evil-want-C-u-scroll t) 
 	 (setq evil-want-C-d-scroll t) 
-	 (setq evil-search-module evil-search)
+	 (setq evil-search-module 'evil-search)
+         (setq evil-toggle-key (kbd "C-q"))
+	 (setq evil-undo-system 'undo-fu)
+  )
   :ensure
   :config(progn
 	   (evil-mode 1)
 	   ;; (define-key evil-motion-state-map "\\" 'evil-ex)
 	   ;;(define-key evil-motion-state-map (kbd "SPC") 'evil-ex)
-	   (evil-define-key 'motion (kbd ";") 'evil-ex)
+	   (evil-define-key 'motion 'global (kbd ";") 'counsel-M-x)
 	   (global-set-key (kbd "C-c <left>") 'evil-window-prev)
 	   (global-set-key (kbd "C-c <right>") 'evil-window-next)
 	   (global-set-key (kbd "<esc>") 'keyboard-quit)
-	   
 	   ;;(define-key evil-motion-state-map (kbd "C-u") 'scroll-down)
 	   ;;(define-key evil-motion-state-map (kbd "C-d") 'scroll-up)
 	   ;;(define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
 	   ;;(define-key evil-motion-state-map (kbd "C-d") 'evil-scroll-down)
-	   ;; LEADER KEY equiv
 	   ;; https://github.com/noctuid/evil-guide#leader-key
 	   (evil-set-leader 'normal (kbd "<SPC>"))
 	   (evil-define-key 'normal 'global (kbd "<leader>p") 'projectile-find-file)
-	   )
+	   ;; (evil-define-key 'normal 'global (kbd "<leader>o") 'projectile-find-file)
+	   ;;(evil-define-key 'normal 'global (kbd "C-r") 'redo)
+    )
 )
 
 ;; dependencies
@@ -82,7 +86,13 @@
   :config(progn
 	   (ivy-mode 1)
 	)
-  )
+)
+
+(use-package counsel
+  :init(progn
+	 (counsel-mode 1)
+	)
+)
 
 ;; finder (uses ivy)
 (use-package swiper
@@ -91,7 +101,7 @@
 	  (global-set-key (kbd "\\") 'swiper)
 	  (global-set-key (kbd "s-f") 'swiper)
 	)
-  )
+)
 
 (use-package magit)
 
@@ -99,10 +109,10 @@
 ;; https://docs.projectile.mx/projectile/usage.html
 (use-package projectile
   :config(progn
-	(projectile-mode +1)
-	(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+    (projectile-mode +1)
+    (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 	)
-  )
+)
 
 ;; (use-package vterm)
 
@@ -133,7 +143,7 @@
 ;; (use-package lsp-ui :commands lsp-ui-mode)
 ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
-
+(defalias 'yes-or-no-p 'y-or-n-p)
 (load-theme 'gruvbox t)
 ;; some additional emacs config
 (setq inhibit-startup-message t)
@@ -148,8 +158,7 @@
 ;; disable messages bufer since it's annoying
 ;;(setq-default message-log-max nil)
 
-;; https://www.emacswiki.org/emacs/
-(setq global-display-line-numbers-mode t)
+(global-display-line-numbers-mode 1)
 (setq display-line-numbers 'relative)
 
 ;; (defalias 'q 'delete-window)
@@ -194,8 +203,7 @@
   :version "green")
 
 (defun display-line-numbers--turn-on ()
-  "Turn on line numbers except for certain major modes.
-Exempt major modes are defined in `display-line-numbers-exempt-modes'."
+  "Turn on line numbers except for certain major modes. Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (unless (or (minibufferp)
               (member major-mode display-line-numbers-exempt-modes))
     (display-line-numbers-mode)))
