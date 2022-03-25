@@ -15,6 +15,12 @@ This repo contains all the config files I need to set up my workflow
 
 instructions and inspo from [here](https://www.freecodecamp.org/news/dive-into-dotfiles-part-2-6321b4a73608)
 
+# mac programs
+``` bash
+# https://github.com/zsh-users/antigen
+curl -L git.io/antigen > ~/antigen.zsh
+```
+
 # Programs/Packages I'm currently using
 
 (make sure these are installed for the config to function properly)

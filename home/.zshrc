@@ -1,52 +1,38 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ANTIGEN setup
+source ~/antigen.zsh
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle git-open
+antigen bundle history
+antigen bundle vi-mode
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+antigen bundle web-search
+ZSH_WEB_SEARCH_ENGINES=(
+    wiki https://en.wikipedia.org/wiki/
+)
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# non-default plugins
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen theme candy
+# antigen bundle agkozak/agkozak-zsh-theme
+
+antigen apply
 
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
@@ -63,22 +49,20 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-open)
-
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# vi-mode 
+VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+export KEYTIMEOUT=1
+export EDITOR='code'
+# export EDITOR='emacsclient'
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -118,8 +102,12 @@ if [ -f ~/.functions ]; then
     . ~/.functions
 fi
 
-ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-export ANDROID_SDK_ROOT
+# linux
+# export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+
+# mac
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
 
 export PSQL_DIR="/usr/local/pgsql/bin"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -136,7 +124,16 @@ PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.local/kitty.app/bin/kitty:$PATH"
 PATH="/usr/lib/postgresql/11/bin/:$PATH"
 
-export PATH
+# temporarily for psql
+PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+# for intel homebrew packages
+PATH="/opt/homebrew/bin/brew:$PATH"
+
+export GOPATH=$HOME/go-workspace # don't forget to change your path correcly!
+export GOROOT=/opt/homebrew/Cellar/go/1.15.7_1/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/markw/.sdkman"
 [[ -s "/home/markw/.sdkman/bin/sdkman-init.sh" ]] && source "/home/markw/.sdkman/bin/sdkman-init.sh"
