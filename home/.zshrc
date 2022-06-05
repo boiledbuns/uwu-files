@@ -4,7 +4,9 @@ export ZSH=$HOME/.oh-my-zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# ANTIGEN setup
+# ============================
+# REGION antigen setup
+# ============================
 source ~/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -20,14 +22,17 @@ ZSH_WEB_SEARCH_ENGINES=(
     wiki https://en.wikipedia.org/wiki/
 )
 
-# non-default plugins
+# --- non-default plugins ---
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
-
-antigen theme candy
 # antigen bundle agkozak/agkozak-zsh-theme
 
+antigen theme candy
+
 antigen apply
+# ============================
+# ENDREGION antigen setup
+# ============================
 
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
@@ -50,7 +55,9 @@ COMPLETION_WAITING_DOTS="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 
+# ============================
 # User configuration
+# ============================
 
 # vi-mode 
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
@@ -60,8 +67,11 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+export ZSHRC='~/.zshrc'
 export KEYTIMEOUT=1
-export EDITOR='code'
+# export EDITOR='code'
+export EDITOR='nvim'
+
 # export EDITOR='emacsclient'
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -82,30 +92,40 @@ export EDITOR='code'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# aliases I use all the time
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+# ============================
+# REGION util functions
+# ============================
+
+# sources file if it exists 
+# $1 name of the file
+and_source() { 
+    printf "Running file %s\n" $1
+    if [ -f $1 ]; then
+        . $1
+    else 
+       printf "File '%s' doesn't exist\n" $1
+    fi
+}
+# ============================
+# REGION load more
+# ============================
 
 # aliases I use all the time
-if [ -f ~/.bash_aliases_linux ]; then
-    . ~/.bash_aliases_linux
-fi
-
+and_source ~/.bash_aliases
+and_source ~/.bash_aliases_linux
 # aliases I use often between projects (often, but not enough to put them in the repo)
-if [ -f ~/.bash_project_aliases ]; then
-    . ~/.bash_project_aliases
-fi
+and_source ~/.bash_project_aliases
+and_source ~/.functions
+and_source ~/.path_exports
 
-# functions
-if [ -f ~/.functions ]; then
-    . ~/.functions
-fi
-
-# linux
-# export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+# ============================
+# END REGION load more
+# ============================
 
 # mac
+# for intel homebrew packages
+PATH="/opt/homebrew/bin/brew:$PATH"
+
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 
@@ -122,12 +142,7 @@ PATH="$HOME/dev/ngrok:$PATH"
 PATH="$HOME/dev/flutter/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.local/kitty.app/bin/kitty:$PATH"
-PATH="/usr/lib/postgresql/11/bin/:$PATH"
-
-# temporarily for psql
-PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-# for intel homebrew packages
-PATH="/opt/homebrew/bin/brew:$PATH"
+PATH="$HOME/.emacs.d/bin:$PATH"
 
 export GOPATH=$HOME/go-workspace # don't forget to change your path correcly!
 export GOROOT=/opt/homebrew/Cellar/go/1.15.7_1/libexec
