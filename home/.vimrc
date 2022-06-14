@@ -6,7 +6,14 @@ set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 " Download plug-ins to the ~/.vim/plugged/ directory
 call vundle#begin('~/.vim/plugged')
+" let vundle manage itself
 Plugin 'VundleVim/Vundle.vim'
+" plugins 
+Plugin 'preservim/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'itchyny/lightline.vim'
+"
 call vundle#end()
 
 filetype plugin indent on
@@ -49,10 +56,12 @@ set ttyfast
 
 " Status bar
 set laststatus=2
-
 " Display options
 set showmode
 set showcmd
+
+" Set status line display
+" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
 
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
@@ -61,11 +70,9 @@ set matchpairs+=<:>
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
-" Show line numbers
-set number
-
-" Set status line display
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
+" Show relative line numbers
+" set number
+set relativenumber
 
 " Encoding
 set encoding=utf-8
@@ -84,8 +91,15 @@ set viminfo='100,<9999,s100
 
 " Map the <Space> key to toggle a selected fold opened/closed.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
+" vnoremap <Space> zf
 
 " Automatically save and load folds
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview"
+
+nnoremap <C-Down> <C-W><C-J>
+nnoremap <C-Up> <C-W><C-K>
+nnoremap <C-Right> <C-W><C-L>
+nnoremap <C-Left> <C-W><C-H>
+
+nnoremap <Space> :

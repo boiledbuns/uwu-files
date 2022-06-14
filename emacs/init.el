@@ -32,6 +32,14 @@
 (use-package straight
   :custom (straight-use-package-by-default t))
 
+;; use when launching gui on mac -> doesn't load env properly
+(use-package exec-path-from-shell
+  :config(progn
+	   (when (memq window-system '(mac ns x))
+	   (exec-path-from-shell-initialize))
+	 )
+  )
+
 ;; unused for now - emacs has this built in
 (defun _leader(key)
     (defconst leader-key "<SPC>")
@@ -123,6 +131,9 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (rust-mode . lsp)
+         (js-mode . lsp)
+         (ts-mode . lsp)
+         (bash-mode . lsp)
          ;; if you want which-key integration
          ;;(lsp-mode . lsp-enable-which-key-integration)
 	 )

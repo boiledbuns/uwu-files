@@ -68,6 +68,7 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 # export LANG=en_US.UTF-8
 
 export ZSHRC='~/.zshrc'
+export VIMRC='~/.config/nvim/init.vim'
 export KEYTIMEOUT=1
 # export EDITOR='code'
 export EDITOR='nvim'

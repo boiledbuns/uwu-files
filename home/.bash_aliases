@@ -27,7 +27,8 @@ alias lsa="ls -A"
 alias lla="ll -A"
 
 # always put git repos in this folder
-alias repo="cd ~/REPO"
+alias repo="~/REPO"
+alias uwu="~/REPO/uwu-files"
 alias edituwu="$EDITOR ~/REPO/uwu-files"
 alias editzshrc="$EDITOR $ZSHRC" 
 alias editvim="$EDITOR $VIMRC"
