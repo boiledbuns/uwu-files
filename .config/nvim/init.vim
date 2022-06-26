@@ -7,7 +7,10 @@ call plug#begin("~/.vim/plugged")
     Plug 'kien/ctrlp.vim'
     Plug 'itchyny/lightline.vim'
     Plug 'tpope/vim-fugitive'
+
     Plug 'tpope/vim-surround'
+    " Plug 'tpope/vim-commentary'
+
     " lsp plugins
     " Plug 'neovim/nvim-lspconfig'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -77,6 +80,7 @@ nnoremap <silent> <leader>bl :bd<CR>
 
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>ww :hide<CR>
+nnoremap <leader>bw :bd<CR>
 
 nnoremap <leader><Up> <C-w><Up>
 nnoremap <leader><Down> <C-w><Down>

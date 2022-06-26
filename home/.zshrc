@@ -118,6 +118,7 @@ and_source ~/.bash_aliases_linux
 and_source ~/.bash_project_aliases
 and_source ~/.functions
 and_source ~/.path_exports
+and_source ~/.zshrc_work
 
 # ============================
 # END REGION load more

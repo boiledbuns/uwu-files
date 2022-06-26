@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# note: requires associative arrays (present in bash 4 and above)
+# will need to install bash unsing brew (mac default bash is 3.x.x)
 
 # creates symlinks for dot files and copies them over to the appropriate locations
 installSymLinks() {
