@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 # git 
+
+# for git commands that optionally use less
+for prefix in g gg; do
+    alias "${prefix}l"="${prefix} log --graph --decorate --pretty=oneline"
+    #alias ggl="gg log --graph --decorate --pretty=oneline"
+done
+
 alias g="git"
 alias gg="g --no-pager"
 alias gpu="git pull"
@@ -8,12 +15,6 @@ alias ga="git add"
 alias gst="git status"
 alias gp="git push"
 alias gc="git commit -m"
-
-# for git commands that optionally use less
-for prefix in g gg; do
-    alias "${prefix}l"="${prefix} log --graph --decorate --pretty=oneline"
-    #alias ggl="gg log --graph --decorate --pretty=oneline"
-done
 
 # =======
 # generic 
@@ -37,3 +38,6 @@ alias editvim="$EDITOR $VIMRC"
 # error with incompatible build tools for macOS 12
 # mac
 alias emacs=/Applications/Emacs.app/Contents/MacOS/Emacs
+
+alias ,source="source ~/REPO/uwu-files"
+alias ,hist="history -f | less"

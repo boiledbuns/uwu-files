@@ -9,7 +9,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'tpope/vim-fugitive'
 
     Plug 'tpope/vim-surround'
-    " Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-commentary'
 
     " lsp plugins
     " Plug 'neovim/nvim-lspconfig'
@@ -74,7 +74,7 @@ nnoremap <leader>tf :NERDTreeFind<CR>
 nnoremap <leader>tm :MinimapToggle<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>fw :w<CR>
-nnoremap <leader>h :h 
+" nnoremap <leader>h :h 
 nnoremap <silent> <leader>bq :bd<CR>
 nnoremap <silent> <leader>bl :bd<CR>
 
@@ -84,8 +84,8 @@ nnoremap <leader>bw :bd<CR>
 
 nnoremap <leader><Up> <C-w><Up>
 nnoremap <leader><Down> <C-w><Down>
-nnoremap <leader><Left> :tabprevious <CR>
-nnoremap <leader><Right> :tabnext <CR>
+nnoremap <leader>h :bprevious <CR>
+nnoremap <leader>l :bnext <CR>
 
 nnoremap <C-k> <C-w><Up>
 nnoremap <C-j> <C-w><Down>

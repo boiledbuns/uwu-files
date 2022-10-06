@@ -21,7 +21,7 @@ instructions and inspo from [here](https://www.freecodecamp.org/news/dive-into-d
 curl -L git.io/antigen > ~/antigen.zsh
 ```
 
-# Programs/Packages I'm currently using
+# Programs/Packages I'm currently using (linux)
 
 (make sure these are installed for the config to function properly)
 

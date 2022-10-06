@@ -28,21 +28,21 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # antigen bundle agkozak/agkozak-zsh-theme
 
 antigen theme candy
-
 antigen apply
 # ============================
-# ENDREGION antigen setup
+# Region ZSH config
 # ============================
 
-# Uncomment the following line to automatically update without prompting.
+# line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
-# Uncomment the following line to display red dots whilst waiting for completion.
+# display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# zsh history config
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # You can set one of the optional three formats:
@@ -50,15 +50,15 @@ COMPLETION_WAITING_DOTS="true"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
+export HISTTIMEFORMAT="%yyyy-%mm-%dd %T "
+export HISTIGNORE="ls:ll:cd:pwd:bg:fg:history | less:gst"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-
 # ============================
 # User configuration
 # ============================
-
 # vi-mode 
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
@@ -70,7 +70,7 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 export ZSHRC='~/.zshrc'
 export VIMRC='~/.config/nvim/init.vim'
 export KEYTIMEOUT=1
-# export EDITOR='code'
+# use `code` for vscode
 export EDITOR='nvim'
 
 # export EDITOR='emacsclient'
@@ -81,49 +81,32 @@ export EDITOR='nvim'
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # ============================
 # REGION util functions
 # ============================
-
 # sources file if it exists 
-# $1 name of the file
+# $1: name of the file
 and_source() { 
     printf "Running file %s\n" $1
     if [ -f $1 ]; then
         . $1
     else 
-       printf "File '%s' doesn't exist\n" $1
+       printf "[WARN] Cannot source '%s', file doesn't exist\n" $1
     fi
 }
 # ============================
 # REGION load more
 # ============================
-
 # aliases I use all the time
-and_source ~/.bash_aliases
-and_source ~/.bash_aliases_linux
-# aliases I use often between projects (often, but not enough to put them in the repo)
-and_source ~/.bash_project_aliases
-and_source ~/.functions
-and_source ~/.path_exports
-and_source ~/.zshrc_work
+and_source ~/.config_generic
+# personal use
+and_source ~/.config_personal_mac
+# and_source ~/.config_personal_linux
+and_source ~/.config_work
 
 # ============================
-# END REGION load more
+# REGION path
 # ============================
-
 # mac
 # for intel homebrew packages
 PATH="/opt/homebrew/bin/brew:$PATH"
