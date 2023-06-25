@@ -69,6 +69,8 @@ let mapleader =" "
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 set timeoutlen=500
 
+" nnoremap <leader>tn :NERDTreeToggle<CR>
+
 nnoremap <leader>tn :NERDTreeToggle<CR>
 nnoremap <leader>tf :NERDTreeFind<CR>
 nnoremap <leader>tm :MinimapToggle<CR>
