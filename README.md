@@ -1,27 +1,38 @@
 # uwu-files
 
-This repo contains all the config files I need to set up my workflow
+This repo contains my dot files
 
-1. dot files: mostly just zsh and i3
+# MacOS set up (current)
+``` bash
+# 1. make sure you have zsh installed (https://ohmyz.sh/#install)
+# 2. install antigen (zsh plugin manager )
+# https://github.com/zsh-users/antigen
+curl -L git.io/antigen > ~/antigen.zsh
+
+# 3. stow - handles symlinking dotfiles with correct hieararchy
+brew install stow
+
+# =======
+# Setup 
+# ======= 
+# use stow to symlink dotfiles:
+stow -t $HOME zsh
+stow -t $HOME nvim
+stow -t $HOME vim
+stow -t $HOME emacs
+```
+
+# Linux: 
+
+1. dotfiles: mostly just zsh and i3
 2. bash aliases: git shortcuts and destinations I use v frequently
 3. init script for dot files: copies config files from this repo to the paths expected by each corresponding program:
 
-- to set up the config, run `./init_linux.sh` for linux or `./init_mac.sh` for mac
-- make sure you have zsh installed (https://ohmyz.sh/#install)
+- to set up the config, run `./setup_config linux` for linux or `./setup_config mac` for mac
+  - for personal config, create `~/.config_personal_mac`
+  - for work config, create `~/.config_work`
 
-## oh my zsh extensions (install these)
-
-- [git-open](https://github.com/paulirish/git-open)
-
-instructions and inspo from [here](https://www.freecodecamp.org/news/dive-into-dotfiles-part-2-6321b4a73608)
-
-# mac programs
-``` bash
-# https://github.com/zsh-users/antigen
-curl -L git.io/antigen > ~/antigen.zsh
-```
-
-# Programs/Packages I'm currently using (linux)
+## Programs/Packages I'm currently using (linux)
 
 (make sure these are installed for the config to function properly)
 
