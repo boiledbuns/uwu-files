@@ -20,6 +20,7 @@ stow -t $HOME zsh
 stow -t $HOME nvim
 stow -t $HOME vim
 stow -t $HOME emacs
+stow -t $HOME tmux
 ```
 
 # Linux: 
