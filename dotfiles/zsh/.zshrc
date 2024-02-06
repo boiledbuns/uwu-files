@@ -102,7 +102,7 @@ and_source ~/.config_generic
 # personal use
 and_source ~/.config_personal_mac
 # and_source ~/.config_personal_linux
-and_source ~/.config_work
+and_source ~/.zshrc.work
 
 # ============================
 # REGION path
