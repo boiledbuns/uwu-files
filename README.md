@@ -20,6 +20,8 @@ stow -t $HOME zsh
 stow -t $HOME nvim
 stow -t $HOME vim
 stow -t $HOME emacs
+# do this to set up tmux package manger (tpm) https://github.com/tmux-plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 stow -t $HOME tmux
 ```
 
