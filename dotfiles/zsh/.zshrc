@@ -108,8 +108,7 @@ and_source ~/.zshrc.work
 # REGION path
 # ============================
 # mac
-# for intel homebrew packages
-PATH="/opt/homebrew/bin/brew:$PATH"
+PATH="/opt/homebrew/bin:$PATH"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
@@ -119,6 +118,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 export PATH="$PSQL_DIR:$PATH"
 export RUST_BACKTRACE=1
+
+# applications
+PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
 PATH="$HOME/.npm-global/bin:$PATH"
 PATH="$HOME/Android/Sdk/platform-tools:$PATH"
@@ -155,4 +159,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
