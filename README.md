@@ -15,7 +15,8 @@ brew install stow
 # =======
 # Setup 
 # ======= 
-# use stow to symlink dotfiles:
+# use stow to symlink dotfiles (run these from the dotfiles directory):
+cd dotfiles
 stow -t $HOME zsh
 stow -t $HOME nvim
 stow -t $HOME vim
@@ -23,6 +24,10 @@ stow -t $HOME emacs
 # do this to set up tmux package manger (tpm) https://github.com/tmux-plugins/tpm
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 stow -t $HOME tmux
+# manually symlink claude config (stow can't handle pre-existing .claude directory)
+for f in ~/REPO/uwu-files/dotfiles/.claude/*; do
+  ln -sf "$f" ~/.claude/$(basename "$f")
+done
 ```
 
 # Linux: 

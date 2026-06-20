@@ -1,3 +1,7 @@
+
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -84,16 +88,19 @@ export EDITOR='nvim'
 # ============================
 # REGION util functions
 # ============================
-# sources file if it exists 
+# sources file if it exists
 # $1: name of the file
-and_source() { 
+and_source() {
     printf "Running file %s\n" $1
     if [ -f $1 ]; then
         . $1
-    else 
+    else
        printf "[WARN] Cannot source '%s', file doesn't exist\n" $1
     fi
 }
+
+# Tmux new session with name prompt
+alias tn='read "name?Session name: " && tmux new -s "$name" -d'
 # ============================
 # REGION load more
 # ============================
@@ -162,3 +169,26 @@ unset __conda_setup
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# bun completions
+[ -s "/Users/richwei/.bun/_bun" ] && source "/Users/richwei/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+source ~/.iterm2_shell_integration.zsh
+
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+# [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
+kiro-cli settings autocomplete.disable true   # disable
+kiro-cli inline disable
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Added by AIM CLI
+export PATH="$HOME/.aim/mcp-servers:$PATH"

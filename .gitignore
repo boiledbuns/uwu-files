@@ -1,1 +1,5 @@
 .DS_Store
+
+# Claude Code generates these in current directory
+.claude/
+claude/
