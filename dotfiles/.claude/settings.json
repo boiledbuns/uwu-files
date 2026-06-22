@@ -1,0 +1,25 @@
+{
+  "awsCredentialExport": "\"/Users/richwei/.toolbox/bin/claude\" default-credential-export",
+  "env": {
+    "AWS_REGION": "us-west-2"
+  },
+  "includeCoAuthoredBy": false,
+  "model": "global.anthropic.claude-opus-4-8[1m]",
+  "availableModels": [
+    "opus",
+    "sonnet"
+  ],
+  "enabledPlugins": {
+    "AmazonBuilderCoreAIAgents-pipeline-assistant@aim": true
+  },
+  "extraKnownMarketplaces": {
+    "aim": {
+      "source": {
+        "source": "directory",
+        "path": "/local/home/richwei/.aim/cc-plugins"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "theme": "dark"
+}
