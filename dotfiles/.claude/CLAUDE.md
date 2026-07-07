@@ -107,3 +107,7 @@ My team knowledge base is located in `/Volumes/workplace/aft-i-context/src/AFTId
 - Prompt me to see if I want to update anything if:
   - I make code changes that would affect the documentation
   - I ask a question related to items in my knowledge base, but is missing
+
+## Review comments
+When you see `CLAUDE-REVIEW:` comments in code, treat them as review feedback:
+Clarify the comment before addressing the issue, then remove the comment as part of the same edit.
